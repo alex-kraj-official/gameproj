@@ -21,10 +21,12 @@ function cartDisplayAddedItems(cartItemsAdded) {
     const cartItems = document.getElementById("cartItems");
 
     cartItemsAdded.forEach(cartItemAdded => {
-        let div = document.createElement("div")
-        div.className = "singleGame"
-        div.id = cartItemAdded.key
-        div.innerHTML = `
+        let divOut = document.createElement("div")
+        divOut.className = "singleGameOut"
+        let divIn = document.createElement("div")
+        divIn.className = "singleGameIn"
+        divIn.id = cartItemAdded.key
+        divIn.innerHTML = `
             <img class="singleGameHero" src="${JSON.parse(cartItemAdded.value).img}" alt="Cyberpunk_2077-hero">
             <h3>${JSON.parse(cartItemAdded.value).title}</h3>
             <h4 class="addedQuantity">Quantity: ${JSON.parse(cartItemAdded.value).quantity}</h4>
@@ -32,7 +34,7 @@ function cartDisplayAddedItems(cartItemsAdded) {
                 <button class="addToWishListBtn">Wishlist</button>
             </div>
         `
-        cartItems.appendChild(div)
+        cartItems.appendChild(divIn)
     });
 }
 
