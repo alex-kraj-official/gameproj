@@ -1,79 +1,141 @@
-header {
-    display: flex;
-    flex-direction: row;
-    gap: 5vw;
-    justify-content: center;
-}
-
 #mostPopularGames {
     display: flex;
     flex-direction: row;
-    gap: 5vw;
+    gap: 2vw;
 }
 
+/* GAME CARD STYLING */
 .singleGameOut {
-    width: 15vw;
-    height: 40vh;
+    width: 16vw;
+    height: 50vh;
+    border-radius: 10px;
+    /* Or 4px if you want Steam's sharper edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     overflow: hidden;
 
-    border: 1px solid black;
-    border-radius: 10px;
+    /* ADD THIS LINE for the smooth animation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ADD THIS NEW BLOCK for the hover effect */
+.singleGameOut:hover {
+    transform: scale(1.05);
+    /* Scales the card up by 5% */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+    /* Darkens and spreads the shadow to make it "pop" */
+    cursor: pointer;
 }
 
 .singleGameIn {
-    /* Make the inner container perfectly fill the fixed outer container */
     width: 100%;
     height: 100%;
     overflow: hidden;
-
-    /* Use flexbox to organize the content inside the card */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-
-    border-radius: 10px;
+    border-radius: 4px;
+    background-color: #202d39;
+    /* Slightly lighter than the body background */
 }
 
 .singleGameHeroDiv {
     width: 100%;
     height: 75%;
+    /* Adjusted slightly to give bottom text more room */
 }
 
 .singleGameHeroImg {
-    /* Force the image to take up exactly the top portion of the card */
     width: 100%;
     height: 100%;
-    /* cover ensures the image fills the space without squishing or stretching */
     object-fit: cover;
-    margin-bottom: 10px;
-    /* Adds a little space below the image */
+    /* Scales the image to fill the dimensions without distortion/stretching */
+    object-position: center;
+    /* Ensures the exact center of the original image is the focal point */
 }
 
 .singleGameBelow {
     width: 100%;
     height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .singleGameTitle {
-    margin: 0px 5px 5px 5px;
+    margin: 5px;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .singleGameBtns {
     display: flex;
-    margin: 0px 5px 5px 5px;
+    justify-content: center;
+    gap: 10px;
+    margin: 5px;
 }
 
+/* STEAM WISHLIST BUTTON */
 .addToWishListBtn {
-    height: 3vh;
-    border-radius: 5px;
+    background-color: #2a475e;
+    color: #67c1f5;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.addToWishListBtnInCart {
-    max-width: 20vw;
+.addToWishListBtn:hover {
+    background-color: #67c1f5;
+    color: #ffffff;
 }
 
+/* STEAM ADD TO CART BUTTON */
 .purchaseBtn {
-    height: 3vh;
-    border-radius: 5px;
+    background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+    color: #d2efa9;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.purchaseBtn:hover {
+    background: linear-gradient(to right, #8ed629 5%, #6aa621 95%);
+    color: #ffffff;
+}
+
+/* STEAM CATEGORY / TAG BUTTONS */
+#Categories {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    /* Allows wrapping on smaller screens */
+}
+
+#Categories h4 {
+    background-color: rgba(103, 193, 245, 0.2);
+    /* Steam's translucent tag background */
+    color: #67c1f5;
+    /* Steam's tag text color */
+    padding: 6px 14px;
+    margin: 0;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#Categories h4:hover {
+    background-color: #67c1f5;
+    color: #ffffff;
 }

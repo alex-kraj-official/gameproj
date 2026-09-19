@@ -1,0 +1,57 @@
+/* wishlist.css */
+
+#wishlistItems {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#wishlistItems .singleGameOut {
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+}
+
+#wishlistItems .singleGameOut:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+#wishlistItems .singleGameIn {
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#wishlistItems .singleGameIn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Slight highlight */
+}
+
+#wishlistItems .singleGameHeroImg {
+    width: 200px;
+    /* Slightly larger thumbnail for wishlist */
+    height: 94px;
+    object-fit: cover;
+    border-radius: 2px;
+    margin-bottom: 0;
+}
+
+#wishlistItems .wishlistItemText {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#wishlistItems .singleGameTitle {
+    margin: 0;
+    font-size: 1.3rem;
+}

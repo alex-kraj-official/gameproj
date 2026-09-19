@@ -3,72 +3,88 @@ function indexOnloadFunc() {
 }
 
 function cartOnLoadFunc() {
-    const cartItemsAdded = cartGetAddedItems()
-    console.log(cartItemsAdded)
+    const cartItemsAdded = cartGetAddedItems();
+    console.log(cartItemsAdded);
 
-    cartDisplayAddedItems(cartItemsAdded)
+    cartDisplayAddedItems(cartItemsAdded);
 }
 
 function cartGetAddedItems() {
-    const allItems = Object.keys(localStorage).map(key => ({
-        key: key,
-        value: localStorage.getItem(key)
-    }));
-    return allItems
+    // Using a prefix filter so Cart and Wishlist don't mix up in localStorage
+    const allItems = Object.keys(localStorage)
+        .filter(key => key.startsWith("cart_"))
+        .map(key => ({
+            key: key,
+            value: localStorage.getItem(key)
+        }));
+    return allItems;
 }
 
 function cartDisplayAddedItems(cartItemsAdded) {
     const cartItems = document.getElementById("cartItems");
 
     cartItemsAdded.forEach(cartItemAdded => {
-        let divOut = document.createElement("div")
-        divOut.className = "singleGameOut"
-        let divIn = document.createElement("div")
-        divIn.className = "singleGameIn"
-        divIn.id = cartItemAdded.key
+        let itemData = JSON.parse(cartItemAdded.value);
+
+        let divOut = document.createElement("div");
+        divOut.className = "singleGameOut";
+
+        let divIn = document.createElement("div");
+        divIn.className = "singleGameIn";
+        divIn.id = cartItemAdded.key;
+        
         divIn.innerHTML = `
-            <img class="singleGameHero" src="${JSON.parse(cartItemAdded.value).img}" alt="Cyberpunk_2077-hero">
-            <h3>${JSON.parse(cartItemAdded.value).title}</h3>
-            <h4 class="addedQuantity">Quantity: ${JSON.parse(cartItemAdded.value).quantity}</h4>
+            <div class="cartItemDataDiv">
+                <img class="singleGameHeroImg" src="${itemData.img}" alt="${itemData.title}-hero">
+                <div class="cartItemText">
+                    <h3 class="singleGameTitle">${itemData.title}</h3>
+                    <h4 class="addedQuantity">Quantity: ${itemData.quantity}</h4>
+                </div>
+            </div>
             <div class="addToWishListBtnInCart">
                 <button class="addToWishListBtn">Wishlist</button>
             </div>
-        `
-        cartItems.appendChild(divIn)
+        `;
+
+        divOut.appendChild(divIn);
+        cartItems.appendChild(divOut);
     });
 }
 
 function addToCartBtnClicked(clickedPurchaseBtn) {
-    const gamePurchased = clickedPurchaseBtn.parentElement;
+    const gamePurchased = clickedPurchaseBtn.closest('.singleGameIn');
 
     const itemAdded = {
         title: null,
         img: null,
         quantity: 0
-    }
+    };
 
-    itemAdded.img = gamePurchased.querySelector(".singleGameHero").src;
-    itemAdded.title = gamePurchased.querySelector("h3").textContent;
+    itemAdded.img = gamePurchased.querySelector(".singleGameHeroImg").src;
+    itemAdded.title = gamePurchased.querySelector(".singleGameTitle").textContent;
 
-    itemAdded.quantity = getPurchasedGameQuantity(itemAdded)
+    itemAdded.quantity = getPurchasedGameQuantity(itemAdded);
 
     console.log("title", itemAdded.title);
     console.log("img", itemAdded.img);
     console.log("quantity", itemAdded.quantity);
 
-    addItemToCart(itemAdded)
+    addItemToCart(itemAdded);
 }
 
 function addItemToCart(itemAdded) {
-    localStorage.setItem(itemAdded.title, JSON.stringify(itemAdded))
-
-    console.log(`\"${JSON.parse(localStorage.getItem(itemAdded.title)).title}\" added to cart!`)
+    // "cart_" prefix to prevent conflicts with wishlist items
+    let storageKey = "cart_" + itemAdded.title;
+    localStorage.setItem(storageKey, JSON.stringify(itemAdded));
+    console.log(`"${itemAdded.title}" added to cart!`);
 }
 
 function getPurchasedGameQuantity(itemAdded) {
-    if (localStorage.getItem(itemAdded.title) != null) {
-        let itemAddedCurrentQuantity = (JSON.parse(localStorage.getItem(itemAdded.title))).quantity
-        return itemAddedCurrentQuantity += 1
+    let storageKey = "cart_" + itemAdded.title;
+    if (localStorage.getItem(storageKey) != null) {
+        let itemAddedCurrentQuantity = JSON.parse(localStorage.getItem(storageKey)).quantity;
+        return itemAddedCurrentQuantity + 1;
+    } else {
+        return 1;
     }
-    else { return 1 }
 }

@@ -1,0 +1,113 @@
+/* cart.css */
+
+#cartItems {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    /* Centers the cart layout */
+}
+
+/* Override the vertical card layout from index.css */
+#cartItems .singleGameOut {
+    display: flex;
+    width: 100%;
+    height: auto;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+
+    /* ADD THIS LINE for the smooth animation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#cartItems .singleGameOut:hover {
+    width: 100%;
+    transform: none;
+    /* Disable the scaling hover effect in the cart */
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Make the inner div horizontal */
+#cartItems .singleGameIn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Darker transparent background */
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.cartItemDataDiv {
+    display: flex;
+    flex: 0.8;
+    flex-direction: row;
+}
+
+/* Adjust image to look like a list thumbnail */
+#cartItems .singleGameHeroImg {
+    width: 160px;
+    height: 75px;
+    object-fit: cover;
+    /* Scales the image to fill the dimensions without distortion/stretching */
+    object-position: center;
+    /* Ensures the exact center of the original image is the focal point */
+    border-radius: 2px;
+    margin-bottom: 0;
+}
+
+/* Align text to the left and let it fill the middle space */
+#cartItems .cartItemText {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#cartItems .singleGameTitle {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#cartItems .addedQuantity {
+    margin: 5px 0 0 0;
+    color: #67c1f5;
+    /* Steam blue for quantity */
+    font-weight: normal;
+}
+
+.addToWishListBtnInCart {
+    flex: 0.2;
+    max-width: 20vw;
+}
+
+.addToWishListBtn {
+    background-color: #2a475e;
+    color: #67c1f5;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addToWishListBtn:hover {
+    background-color: #67c1f5;
+    color: #ffffff;
+}
