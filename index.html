@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>G33X</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body onload="indexOnloadFunc()">
+    <header>
+        <h1><a href="index.html">G33X</a></h1>
+        <h1><a href="wishlist.html">Wishlist</a></h1>
+        <h1><a href="cart.html">Cart</a></h1>
+    </header>
+    <main>
+        <h1>Available Games</h1>
+        <h2>Categories</h2>
+        <div id="Categories" style="display: flex; flex-direction: row; margin: 5px; gap: 30px; margin-top: -30px;">
+            <h4>Action</h4>
+            <h4>Puzzle</h4>
+            <h4>F2P</h4>
+            <h4>Under 5€</h4>
+        </div>
+        <div id="mostPopularGamesDiv">
+            <h2>Most popular games</h2>
+            <div id="mostPopularGames">
+                <div class="singleGame">
+                    <img class="singleGameHero" src="./img/Cyberpunk_2077.jpg" alt="Cyberpunk_2077-hero">
+                    <h3>Cyperpunk 2077</h3>
+                    <button class="addToWishListBtn">Wishlist</button>
+                    <button class="purchaseBtn"onclick="addToCartBtnClicked(this)">Cart</button>
+                </div>
+                <div class="singleGame">
+                    <img class="singleGameHero" src="./img/Viewfinder.jpg" alt="Cyberpunk_2077-hero">
+                    <h3>Viewfinder</h3>
+                    <button class="addToWishListBtn">Wishlist</button>
+                    <button class="purchaseBtn"onclick="addToCartBtnClicked(this)">Cart</button>
+                </div>
+                <div class="singleGame">
+                    <img class="singleGameHero" src="./img/Heroes of Might and Magic III.jpg" alt="Cyberpunk_2077-hero">
+                    <h3>Heroes III</h3>
+                    <button class="addToWishListBtn">Wishlist</button>
+                    <button class="purchaseBtn"onclick="addToCartBtnClicked(this)">Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="cart.js"></script>
+    <script src="wishlist.js"></script>
+</body>
+
+</html>

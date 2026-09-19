@@ -1,0 +1,45 @@
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    justify-content: center;
+}
+
+#mostPopularGames {
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+}
+
+.singleGame {
+    border: 1px solid black;
+    width: 10vw;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.singleGameHero {
+    max-width: 13vw;
+    max-height: 25vh;
+}
+
+.addToWishListBtn {
+    min-width: 70%;
+    min-height: 3vh;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.addToWishListBtnInCart {
+    max-width: 20vw;
+}
+
+.purchaseBtn {
+    min-height: 3vh;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
