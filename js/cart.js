@@ -1,5 +1,19 @@
 function indexOnloadFunc() {
     // localStorage.clear();
+    const singleGames = [...document.getElementsByClassName('singleGameTitle')];
+    singleGames.forEach(singleGame => {
+        const purchaseBtn = singleGame.nextElementSibling.querySelector('.purchaseBtn');
+        if (checkIfItemAddedToCart(singleGame.textContent)) {
+            if (purchaseBtn) {
+                purchaseBtn.textContent = "In Cart";
+            }
+        }
+        else {
+            if (purchaseBtn) {
+                purchaseBtn.textContent = "Add to Cart";
+            }
+        }
+    });
 }
 
 function cartOnLoadFunc() {
@@ -32,7 +46,7 @@ function cartDisplayAddedItems(cartItemsAdded) {
         let divIn = document.createElement("div");
         divIn.className = "singleGameIn";
         divIn.id = cartItemAdded.key;
-        
+
         divIn.innerHTML = `
             <div class="cartItemDataDiv">
                 <img class="singleGameHeroImg" src="${itemData.img}" alt="${itemData.title}-hero">
@@ -65,11 +79,20 @@ function addToCartBtnClicked(clickedPurchaseBtn) {
 
     itemAdded.quantity = getPurchasedGameQuantity(itemAdded);
 
-    console.log("title", itemAdded.title);
-    console.log("img", itemAdded.img);
-    console.log("quantity", itemAdded.quantity);
+    clickedPurchaseBtn.textContent = "In Cart";
 
-    addItemToCart(itemAdded);
+    if (checkIfItemAddedToCart(itemAdded.title)) {
+        console.log("This item has been added to the cart already!");
+        addItemToCart(itemAdded);
+    }
+    else {
+
+        console.log("title", itemAdded.title);
+        console.log("img", itemAdded.img);
+        console.log("quantity", itemAdded.quantity);
+
+        addItemToCart(itemAdded);
+    }
 }
 
 function addItemToCart(itemAdded) {
@@ -86,5 +109,15 @@ function getPurchasedGameQuantity(itemAdded) {
         return itemAddedCurrentQuantity + 1;
     } else {
         return 1;
+    }
+}
+
+function checkIfItemAddedToCart(itemAdded) {
+    let storageKey = "cart_" + itemAdded;
+    if (localStorage.getItem(storageKey) != null) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
