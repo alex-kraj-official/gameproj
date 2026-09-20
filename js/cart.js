@@ -17,6 +17,7 @@ function indexOnloadFunc() {
 }
 
 function cartOnLoadFunc() {
+    console.log('cartLoading');
     const cartItemsAdded = cartGetAddedItems();
     console.log(cartItemsAdded);
 
@@ -55,8 +56,9 @@ function cartDisplayAddedItems(cartItemsAdded) {
                     <h4 class="addedQuantity">Quantity: ${itemData.quantity}</h4>
                 </div>
             </div>
-            <div class="addToWishListBtnInCart">
+            <div class="cartItemBtnDiv">
                 <button class="addToWishListBtn">Wishlist</button>
+                <button class="removeFromCartBtn" onclick="removeCartItem(this)">Remove</button>
             </div>
         `;
 
@@ -120,4 +122,13 @@ function checkIfItemAddedToCart(itemAdded) {
     else {
         return false;
     }
+}
+
+function removeCartItem(itemToRemove) {
+    const itemTitleToRemove = itemToRemove.parentElement.previousElementSibling.querySelector('.singleGameTitle').textContent;
+    localStorage.removeItem('cart_' + itemTitleToRemove);
+    // window.location.reload();
+
+    const fullItemToRemove = itemToRemove.parentElement.parentElement.parentElement
+    fullItemToRemove.remove();
 }

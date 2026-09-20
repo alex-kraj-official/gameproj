@@ -91,12 +91,19 @@
     font-weight: normal;
 }
 
-.addToWishListBtnInCart {
+.cartItemBtnDiv {
+    height: 100%;
     flex: 0.2;
-    max-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .addToWishListBtn {
+    justify-self: flex-start;
+    width: 75%;
     background-color: #2a475e;
     color: #67c1f5;
     border: none;
@@ -110,4 +117,23 @@
 .addToWishListBtn:hover {
     background-color: #67c1f5;
     color: #ffffff;
+}
+
+.removeFromCartBtn {
+    justify-self: flex-start;
+    width: 75%;
+    background-color: transparent;
+    color: #67c1f5af;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.removeFromCartBtn:hover {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: underline;
 }
