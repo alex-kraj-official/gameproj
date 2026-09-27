@@ -78,7 +78,7 @@
 }
 
 /* STEAM WISHLIST BUTTON */
-.addToWishListBtn {
+.wishlistBtn {
     background-color: #2a475e;
     color: #67c1f5;
     border: none;
@@ -89,7 +89,7 @@
     transition: all 0.2s ease;
 }
 
-.addToWishListBtn:hover {
+.wishlistBtn:hover {
     background-color: #67c1f5;
     color: #ffffff;
 }
