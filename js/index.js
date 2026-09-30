@@ -38,7 +38,7 @@ function checkIfWishlisted(singleGames) {
 }
 
 function checkIfItemAddedToCart(itemAdded) {
-    let storageKey = "cart_" + itemAdded;
+    let storageKey = "cart-" + itemAdded;
     if (localStorage.getItem(storageKey) != null) {
         return true;
     }
@@ -48,7 +48,7 @@ function checkIfItemAddedToCart(itemAdded) {
 }
 
 function checkIfItemWishlisted(itemAdded) {
-    let storageKey = "wishlist_" + itemAdded;
+    let storageKey = "wishlist-" + itemAdded;
     if (localStorage.getItem(storageKey) != null) {
         return true;
     }
@@ -105,17 +105,41 @@ function addToCartBtnClicked(clickedPurchaseBtn) {
 
 function addItemToCart(itemAdded) {
     // "cart_" prefix to prevent conflicts with wishlist items
-    let storageKey = "cart_" + itemAdded.title;
+    let storageKey = "cart-" + itemAdded.title;
     localStorage.setItem(storageKey, JSON.stringify(itemAdded));
-    console.log(`"${itemAdded.title}" added to cart!`);
+    console.log(`"${itemAdded.title}" is already added to cart!`);
 }
 
 function getPurchasedGameQuantity(itemAdded) {
-    let storageKey = "cart_" + itemAdded.title;
+    let storageKey = "cart-" + itemAdded.title;
     if (localStorage.getItem(storageKey) != null) {
         let itemAddedCurrentQuantity = JSON.parse(localStorage.getItem(storageKey)).quantity;
         return itemAddedCurrentQuantity + 1;
     } else {
         return 1;
     }
+}
+
+function wishlistBtnClicked(clickedWishlistItemBtn) {
+    const wishlistedItem = clickedWishlistItemBtn.closest('.singleGameIn');
+
+    const itemWishlisted = {
+        title: wishlistedItem.querySelector(".singleGameTitle").textContent,
+        img: wishlistedItem.querySelector(".singleGameHeroImg").src
+    };
+
+    clickedWishlistItemBtn.textContent = "Wishlisted";
+
+    if (checkIfItemWishlisted(itemWishlisted.title)) {
+        console.log(`"${itemWishlisted.title}" is already wishlisted!`);
+    }
+    else {
+        wishlistItem(itemWishlisted);
+    }
+}
+
+function wishlistItem(clickedWishlistItemBtn) {
+    let storageKey = "wishlist-" + clickedWishlistItemBtn.title;
+    localStorage.setItem(storageKey, JSON.stringify(clickedWishlistItemBtn));
+    console.log(`"${clickedWishlistItemBtn.title}" wishlisted!`)
 }
