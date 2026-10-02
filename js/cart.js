@@ -1,13 +1,12 @@
 function cartOnLoadFunc() {
     const cartItemsAdded = cartGetAddedItems();
-
+    // localStorage.clear();
     cartDisplayAddedItems(cartItemsAdded);
 }
 
 function cartGetAddedItems() {
-    // Using a prefix filter so Cart and Wishlist don't mix up in localStorage
     const cartItemsAdded = Object.keys(localStorage)
-        .filter(key => key.startsWith("cart-"))
+        .filter(key => key.startsWith(global_localStorageCartKeyPrefix))
         .map(key => ({
             key: key,
             value: localStorage.getItem(key)
@@ -49,12 +48,11 @@ function cartDisplayAddedItems(cartItemsAdded) {
 
 function removeCartItem(cartItemToRemove) {
     const cartItemTitleToRemove = cartItemToRemove.parentElement.previousElementSibling.querySelector('.cartItemTitle').textContent;
-    const localStorageCartKey = "cart-";
-    const cartItemKeyToRemove = localStorageCartKey + cartItemTitleToRemove;
+    const cartItemKeyToRemove = global_localStorageCartKeyPrefix + cartItemTitleToRemove;
     if (localStorage.getItem(cartItemKeyToRemove)) {
         localStorage.removeItem(cartItemKeyToRemove);
 
-        const cartItemDivToRemove = cartItemToRemove.parentElement.parentElement.parentElement
+        const cartItemDivToRemove = cartItemToRemove.parentElement.parentElement.parentElement;
         cartItemDivToRemove.remove();
     }
 }

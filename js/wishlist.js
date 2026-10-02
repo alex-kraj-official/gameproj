@@ -1,12 +1,12 @@
 function wishlistOnLoadFunc() {
     const wishlistItemsAdded = wishlistGetAddedItems();
-
+    // localStorage.clear();
     wishlistDisplayAddedItems(wishlistItemsAdded);
 }
 
 function wishlistGetAddedItems() {
     const wishlistItemsAdded = Object.keys(localStorage)
-        .filter(key => key.startsWith("wishlist-"))
+        .filter(key => key.startsWith(global_localStorageWishlistKeyPrefix))
         .map(key => ({
             key: key,
             value: localStorage.getItem(key)
@@ -35,7 +35,7 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
                 </div>
             </div>
             <div class="wishlistItemBtnDiv">
-                <button class="addToCartBtn">Add to Cart</button>
+                <button class="addToCartBtn" onclick="wishlist_addToCartBtnClicked(this)">Add to Cart</button>
                 <button class="removeFromWishlistBtn" onclick="removeWishlistItem(this)">Remove</button>
             </div>
         `;
@@ -47,12 +47,58 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
 
 function removeWishlistItem(wishlistItemToRemove) {
     const wishlistItemTitleToRemove = wishlistItemToRemove.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
-    const localStorageWishlistKey = "wishlist-";
-    const wishlistItemKeyToRemove = localStorageWishlistKey + wishlistItemTitleToRemove;
+    const wishlistItemKeyToRemove = global_localStorageWishlistKeyPrefix + wishlistItemTitleToRemove;
     if (localStorage.getItem(wishlistItemKeyToRemove)) {
         localStorage.removeItem(wishlistItemKeyToRemove);
 
-        const wishlistItemDivToRemove = wishlistItemToRemove.parentElement.parentElement.parentElement
+        const wishlistItemDivToRemove = wishlistItemToRemove.parentElement.parentElement.parentElement;
         wishlistItemDivToRemove.remove();
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function wishlist_addToCartBtnClicked(wishlistedItemAddToCart) {
+    const wishlistedItemTitleAddToCart = wishlistedItemAddToCart.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
+    const wishlistedItemKeyAddToCart = global_localStorageCartKeyPrefix + wishlistedItemTitleAddToCart;
+
+    const wishlistedItemValueAddToCart = {
+        title: wishlistedItemTitleAddToCart,
+        img: wishlistedItemAddToCart.parentElement.previousElementSibling.querySelector(".wishlistItemHeroImg").getAttribute("src"),
+        quantity: 0
+    };
+
+    if (checkItemStatus(wishlistedItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
+        console.log("This item has been added to the cart already!");
+    }
+    else {
+        console.log("title", wishlistedItemValueAddToCart.title);
+        console.log("img", wishlistedItemValueAddToCart.img);
+        console.log("quantity", wishlistedItemValueAddToCart.quantity);
+    }
+
+    wishlistedItemValueAddToCart.quantity = getItemQuantityAddedToCart(wishlistedItemTitleAddToCart);
+
+    localStorage.setItem(wishlistedItemKeyAddToCart, JSON.stringify(wishlistedItemValueAddToCart));
+    wishlistedItemAddToCart.textContent = "In Cart";
 }
