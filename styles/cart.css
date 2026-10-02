@@ -10,7 +10,7 @@
 }
 
 /* Override the vertical card layout from index.css */
-#cartItems .singleGameOut {
+#cartItems .cartItemDivOut {
     display: flex;
     width: 100%;
     height: auto;
@@ -23,7 +23,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#cartItems .singleGameOut:hover {
+#cartItems .cartItemDivOut:hover {
     width: 100%;
     transform: none;
     /* Disable the scaling hover effect in the cart */
@@ -32,7 +32,7 @@
 }
 
 /* Make the inner div horizontal */
-#cartItems .singleGameIn {
+#cartItems .cartItemDivIn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,6 +51,11 @@
     border-radius: 4px;
 }
 
+#cartItems .cartItemDivIn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Slight highlight */
+}
+
 .cartItemDataDiv {
     display: flex;
     flex: 0.8;
@@ -58,7 +63,7 @@
 }
 
 /* Adjust image to look like a list thumbnail */
-#cartItems .singleGameHeroImg {
+#cartItems .cartItemHeroImg {
     width: 160px;
     height: 75px;
     object-fit: cover;
@@ -79,12 +84,12 @@
     justify-content: center;
 }
 
-#cartItems .singleGameTitle {
+#cartItems .cartItemTitle {
     margin: 0;
     font-size: 1.2rem;
 }
 
-#cartItems .addedQuantity {
+#cartItems .cartItemAddedQuantity {
     margin: 5px 0 0 0;
     color: #67c1f5;
     /* Steam blue for quantity */

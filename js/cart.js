@@ -1,41 +1,39 @@
 function cartOnLoadFunc() {
-    // console.log('cartLoading');
     const cartItemsAdded = cartGetAddedItems();
-    // console.log(cartItemsAdded);
 
     cartDisplayAddedItems(cartItemsAdded);
 }
 
 function cartGetAddedItems() {
     // Using a prefix filter so Cart and Wishlist don't mix up in localStorage
-    const allItems = Object.keys(localStorage)
-        .filter(key => key.startsWith("cart_"))
+    const cartItemsAdded = Object.keys(localStorage)
+        .filter(key => key.startsWith("cart-"))
         .map(key => ({
             key: key,
             value: localStorage.getItem(key)
         }));
-    return allItems;
+    return cartItemsAdded;
 }
 
 function cartDisplayAddedItems(cartItemsAdded) {
-    const cartItems = document.getElementById("cartItems");
+    const cartItemsDiv = document.getElementById("cartItems");
 
     cartItemsAdded.forEach(cartItemAdded => {
-        let itemData = JSON.parse(cartItemAdded.value);
+        let cartItemData = JSON.parse(cartItemAdded.value);
 
-        let divOut = document.createElement("div");
-        divOut.className = "singleGameOut";
+        let cartItemDivOut = document.createElement("div");
+        cartItemDivOut.className = "cartItemDivOut";
 
-        let divIn = document.createElement("div");
-        divIn.className = "singleGameIn";
-        divIn.id = cartItemAdded.key;
+        let cartItemDivIn = document.createElement("div");
+        cartItemDivIn.className = "cartItemDivIn";
+        cartItemDivIn.id = cartItemAdded.key;
 
-        divIn.innerHTML = `
+        cartItemDivIn.innerHTML = `
             <div class="cartItemDataDiv">
-                <img class="singleGameHeroImg" src="${itemData.img}" alt="${itemData.title}-hero">
+                <img class="cartItemHeroImg" src="${cartItemData.img}" alt="${cartItemData.title}-hero">
                 <div class="cartItemText">
-                    <h3 class="singleGameTitle">${itemData.title}</h3>
-                    <h4 class="addedQuantity">Quantity: ${itemData.quantity}</h4>
+                    <h3 class="cartItemTitle">${cartItemData.title}</h3>
+                    <h4 class="cartItemAddedQuantity">Quantity: ${cartItemData.quantity}</h4>
                 </div>
             </div>
             <div class="cartItemBtnDiv">
@@ -44,16 +42,19 @@ function cartDisplayAddedItems(cartItemsAdded) {
             </div>
         `;
 
-        divOut.appendChild(divIn);
-        cartItems.appendChild(divOut);
+        cartItemDivOut.appendChild(cartItemDivIn);
+        cartItemsDiv.appendChild(cartItemDivOut);
     });
 }
 
-function removeCartItem(itemToRemove) {
-    const itemTitleToRemove = itemToRemove.parentElement.previousElementSibling.querySelector('.singleGameTitle').textContent;
-    localStorage.removeItem('cart_' + itemTitleToRemove);
-    // window.location.reload();
-
-    const fullItemToRemove = itemToRemove.parentElement.parentElement.parentElement
-    fullItemToRemove.remove();
+function removeCartItem(cartItemToRemove) {
+    const cartItemTitleToRemove = cartItemToRemove.parentElement.previousElementSibling.querySelector('.cartItemTitle').textContent;
+    const localStorageCartKey = "cart-";
+    const cartItemKeyToRemove = localStorageCartKey + cartItemTitleToRemove;
+    if (localStorage.getItem(cartItemKeyToRemove)) {
+        localStorage.removeItem(cartItemKeyToRemove);
+        
+        const cartItemDivToRemove = cartItemToRemove.parentElement.parentElement.parentElement
+        cartItemDivToRemove.remove();
+    }
 }

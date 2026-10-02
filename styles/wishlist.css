@@ -6,38 +6,69 @@
     gap: 15px;
     max-width: 800px;
     margin: 0 auto;
+    /* Centers the wishlist layout */
 }
 
-#wishlistItems .singleGameOut {
+/* Override the vertical card layout from index.css */
+#wishlistItems .wishlistItemDivOut {
+    display: flex;
     width: 100%;
     height: auto;
-    box-shadow: none;
-    transition: background-color 0.2s ease;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+
+    /* ADD THIS LINE for the smooth animation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#wishlistItems .singleGameOut:hover {
+#wishlistItems .wishlistItemDivOut:hover {
+    width: 100%;
     transform: none;
+    /* Disable the scaling hover effect in the cart */
     box-shadow: none;
+    cursor: default;
 }
 
-#wishlistItems .singleGameIn {
+/* Make the inner div horizontal */
+#wishlistItems .wishlistItemDivIn {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.2);
+    /* Darker transparent background */
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 4px;
 }
 
-#wishlistItems .singleGameIn:hover {
+#wishlistItems .wishlistItemDivIn:hover {
     background-color: rgba(255, 255, 255, 0.05);
     /* Slight highlight */
 }
 
-#wishlistItems .singleGameHeroImg {
-    width: 200px;
-    /* Slightly larger thumbnail for wishlist */
-    height: 94px;
+.wishlistItemDataDiv {
+    display: flex;
+    flex: 0.8;
+    flex-direction: row;
+}
+
+#wishlistItems .wishlistItemHeroImg {
+    width: 160px;
+    height: 75px;
     object-fit: cover;
+    /* Scales the image to fill the dimensions without distortion/stretching */
+    object-position: center;
+    /* Ensures the exact center of the original image is the focal point */
     border-radius: 2px;
     margin-bottom: 0;
 }
@@ -51,7 +82,54 @@
     justify-content: center;
 }
 
-#wishlistItems .singleGameTitle {
+#wishlistItems .wishlistItemTitle {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+}
+
+.wishlistItemBtnDiv {
+    height: 100%;
+    flex: 0.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.addToCartBtn {
+    justify-self: flex-start;
+    width: 75%;
+    background-color: #2a475e;
+    color: #67c1f5;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addToCartBtn:hover {
+    background-color: #67c1f5;
+    color: #ffffff;
+}
+
+.removeFromWishlistBtn {
+    justify-self: flex-start;
+    width: 75%;
+    background-color: transparent;
+    color: #67c1f5af;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.removeFromWishlistBtn:hover {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: underline;
 }
