@@ -19,12 +19,12 @@ function cartDisplayAddedItems(cartItemsAdded) {
     const cartItemsDiv = document.getElementById("cartItems");
 
     cartItemsAdded.forEach(cartItemAdded => {
-        let cartItemData = JSON.parse(cartItemAdded.value);
+        const cartItemData = JSON.parse(cartItemAdded.value);
 
-        let cartItemDivOut = document.createElement("div");
+        const cartItemDivOut = document.createElement("div");
         cartItemDivOut.className = "cartItemDivOut";
 
-        let cartItemDivIn = document.createElement("div");
+        const cartItemDivIn = document.createElement("div");
         cartItemDivIn.className = "cartItemDivIn";
         cartItemDivIn.id = cartItemAdded.key;
 
@@ -53,7 +53,7 @@ function removeCartItem(cartItemToRemove) {
     const cartItemKeyToRemove = localStorageCartKey + cartItemTitleToRemove;
     if (localStorage.getItem(cartItemKeyToRemove)) {
         localStorage.removeItem(cartItemKeyToRemove);
-        
+
         const cartItemDivToRemove = cartItemToRemove.parentElement.parentElement.parentElement
         cartItemDivToRemove.remove();
     }

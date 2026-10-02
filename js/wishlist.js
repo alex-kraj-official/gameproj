@@ -18,7 +18,7 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
     const wishlistItemsDiv = document.getElementById("wishlistItems");
 
     wishlistItemsAdded.forEach(wishlistItemAdded => {
-        let wishlistItemData = JSON.parse(wishlistItemAdded.value);
+        const wishlistItemData = JSON.parse(wishlistItemAdded.value);
 
         const wishlistItemDivOut = document.createElement("div");
         wishlistItemDivOut.className = "wishlistItemDivOut";
