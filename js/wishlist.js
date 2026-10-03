@@ -1,6 +1,5 @@
 function wishlistOnLoadFunc() {
     const wishlistItemsAdded = wishlistGetAddedItems();
-    // localStorage.clear();
     wishlistDisplayAddedItems(wishlistItemsAdded);
 }
 

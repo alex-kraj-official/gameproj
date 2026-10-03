@@ -4,25 +4,19 @@
     gap: 2vw;
 }
 
-/* GAME CARD STYLING */
 .homepageItemDivOut {
     width: 16vw;
     height: 50vh;
     border-radius: 10px;
-    /* Or 4px if you want Steam's sharper edges */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     overflow: hidden;
 
-    /* ADD THIS LINE for the smooth animation */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* ADD THIS NEW BLOCK for the hover effect */
 .homepageItemDivOut:hover {
     transform: scale(1.05);
-    /* Scales the card up by 5% */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
-    /* Darkens and spreads the shadow to make it "pop" */
     cursor: pointer;
 }
 
@@ -36,22 +30,18 @@
     text-align: center;
     border-radius: 4px;
     background-color: #202d39;
-    /* Slightly lighter than the body background */
 }
 
 .homepageItemHeroImgDiv {
     width: 100%;
     height: 75%;
-    /* Adjusted slightly to give bottom text more room */
 }
 
 .homepageItemHeroImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Scales the image to fill the dimensions without distortion/stretching */
     object-position: center;
-    /* Ensures the exact center of the original image is the focal point */
 }
 
 .homepageItemBelowDiv {
@@ -77,7 +67,6 @@
     margin: 5px;
 }
 
-/* STEAM WISHLIST BUTTON */
 .homepage_wishlistBtn {
     background-color: #2a475e;
     color: #67c1f5;
@@ -94,7 +83,6 @@
     color: #ffffff;
 }
 
-/* STEAM ADD TO CART BUTTON */
 .homepage_addToCartBtn {
     background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
     color: #d2efa9;
@@ -111,21 +99,17 @@
     color: #ffffff;
 }
 
-/* STEAM CATEGORY / TAG BUTTONS */
 #Categories {
     display: flex;
     flex-direction: row;
     gap: 10px;
     margin-bottom: 30px;
     flex-wrap: wrap;
-    /* Allows wrapping on smaller screens */
 }
 
 #Categories h4 {
     background-color: rgba(103, 193, 245, 0.2);
-    /* Steam's translucent tag background */
     color: #67c1f5;
-    /* Steam's tag text color */
     padding: 6px 14px;
     margin: 0;
     border-radius: 2px;

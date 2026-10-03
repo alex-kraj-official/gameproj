@@ -1,15 +1,11 @@
-/* wishlist.css */
-
 #wishlistItems {
     display: flex;
     flex-direction: column;
     gap: 15px;
     max-width: 800px;
     margin: 0 auto;
-    /* Centers the wishlist layout */
 }
 
-/* Override the vertical card layout from index.css */
 #wishlistItems .wishlistItemDivOut {
     display: flex;
     width: 100%;
@@ -19,25 +15,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     overflow: hidden;
 
-    /* ADD THIS LINE for the smooth animation */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #wishlistItems .wishlistItemDivOut:hover {
     width: 100%;
     transform: none;
-    /* Disable the scaling hover effect in the cart */
     box-shadow: none;
     cursor: default;
 }
 
-/* Make the inner div horizontal */
 #wishlistItems .wishlistItemDivIn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.2);
-    /* Darker transparent background */
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
@@ -53,7 +45,6 @@
 
 #wishlistItems .wishlistItemDivIn:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    /* Slight highlight */
 }
 
 .wishlistItemDataDiv {
@@ -66,9 +57,7 @@
     width: 160px;
     height: 75px;
     object-fit: cover;
-    /* Scales the image to fill the dimensions without distortion/stretching */
     object-position: center;
-    /* Ensures the exact center of the original image is the focal point */
     border-radius: 2px;
     margin-bottom: 0;
 }

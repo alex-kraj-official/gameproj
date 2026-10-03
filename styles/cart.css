@@ -1,15 +1,11 @@
-/* cart.css */
-
 #cartItems {
     display: flex;
     flex-direction: column;
     gap: 15px;
     max-width: 800px;
     margin: 0 auto;
-    /* Centers the cart layout */
 }
 
-/* Override the vertical card layout from index.css */
 #cartItems .cartItemDivOut {
     display: flex;
     width: 100%;
@@ -19,25 +15,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     overflow: hidden;
 
-    /* ADD THIS LINE for the smooth animation */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #cartItems .cartItemDivOut:hover {
     width: 100%;
     transform: none;
-    /* Disable the scaling hover effect in the cart */
     box-shadow: none;
     cursor: default;
 }
 
-/* Make the inner div horizontal */
 #cartItems .cartItemDivIn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.2);
-    /* Darker transparent background */
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
@@ -53,7 +45,6 @@
 
 #cartItems .cartItemDivIn:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    /* Slight highlight */
 }
 
 .cartItemDataDiv {
@@ -62,19 +53,15 @@
     flex-direction: row;
 }
 
-/* Adjust image to look like a list thumbnail */
 #cartItems .cartItemHeroImg {
     width: 160px;
     height: 75px;
     object-fit: cover;
-    /* Scales the image to fill the dimensions without distortion/stretching */
     object-position: center;
-    /* Ensures the exact center of the original image is the focal point */
     border-radius: 2px;
     margin-bottom: 0;
 }
 
-/* Align text to the left and let it fill the middle space */
 #cartItems .cartItemText {
     flex-grow: 1;
     text-align: left;
@@ -92,7 +79,6 @@
 #cartItems .cartItemAddedQuantity {
     margin: 5px 0 0 0;
     color: #67c1f5;
-    /* Steam blue for quantity */
     font-weight: normal;
 }
 

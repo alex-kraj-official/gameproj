@@ -1,9 +1,6 @@
-/* STEAM BASE STYLES */
 body {
     background-color: #1b2838;
-    /* Steam's main dark blue background */
     color: #c7d5e0;
-    /* Steam's standard light grey/blue text */
     font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 20px;
@@ -25,7 +22,6 @@ header a {
 
 header a:hover {
     color: #66c0f4;
-    /* Steam blue hover */
 }
 
 h1,

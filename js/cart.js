@@ -1,6 +1,5 @@
 function cartOnLoadFunc() {
     const cartItemsAdded = cartGetAddedItems();
-    // localStorage.clear();
     cartDisplayAddedItems(cartItemsAdded);
 }
 
