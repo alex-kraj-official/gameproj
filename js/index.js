@@ -28,6 +28,8 @@ function homepage_addToCartBtnClicked(clickedAddToCartBtn) {
         quantity: item_quantity_toAddToCart
     };
 
+    console.log(itemData_toAddToCart.imgSrc);
+
     clickedAddToCartBtn.textContent = AddedToCartItemBtn_textContent;
 
     addToCartItem(itemData_toAddToCart);

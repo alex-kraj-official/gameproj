@@ -21,7 +21,7 @@ const global_localStorageCartKeyPrefix = "cart-";
 const global_localStorageWishlistKeyPrefix = "wishlist-";
 
 const notWishlistedItemBtn_textContent = "Wishlist";
-const wishlistedItemBtn_textContent = "Wishlisted";
+const wishlistedItemBtn_textContent = "On Wishlist";
 const notAddedToCartItemBtn_textContent = "Add to Cart";
 const AddedToCartItemBtn_textContent = "In Cart";
 

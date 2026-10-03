@@ -28,7 +28,7 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
 
         wishlistItemDivIn.innerHTML = `
             <div class="wishlistItemDataDiv">
-                <img class="wishlistItemHeroImg" src="${wishlistItemData.img}" alt="${wishlistItemData.title}-hero">
+                <img class="wishlistItemHeroImg" src="${wishlistItemData.imgSrc}" alt="${wishlistItemData.title}-hero">
                 <div class="wishlistItemText">
                     <h3 class="wishlistItemTitle">${wishlistItemData.title}</h3>
                 </div>

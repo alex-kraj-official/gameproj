@@ -28,7 +28,7 @@ function cartDisplayAddedItems(cartItemsAdded) {
 
         cartItemDivIn.innerHTML = `
             <div class="cartItemDataDiv">
-                <img class="cartItemHeroImg" src="${cartItemData.img}" alt="${cartItemData.title}-hero">
+                <img class="cartItemHeroImg" src="${cartItemData.imgSrc}" alt="${cartItemData.title}-hero">
                 <div class="cartItemText">
                     <h3 class="cartItemTitle">${cartItemData.title}</h3>
                     <h4 class="cartItemAddedQuantity">Quantity: ${cartItemData.quantity}</h4>
