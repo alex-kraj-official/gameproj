@@ -95,10 +95,15 @@ function checkItemStatus(itemToCheck, statusToCheck) {
 
 
 
-function wishlistItem(clickedWishlistItemBtn) {
-    let storageKey = global_localStorageWishlistKeyPrefix + clickedWishlistItemBtn.title;
-    localStorage.setItem(storageKey, JSON.stringify(clickedWishlistItemBtn));
-    console.log(`"${clickedWishlistItemBtn.title}" wishlisted!`);
+function wishlistItem(itemWishlisted) {
+    if (checkItemStatus(itemWishlisted.title, global_localStorageWishlistKeyPrefix)) {
+        console.log(`"${itemWishlisted.title}" is already wishlisted!`);
+    }
+    else {
+        let storageKey = global_localStorageWishlistKeyPrefix + itemWishlisted.title;
+        localStorage.setItem(storageKey, JSON.stringify(itemWishlisted));
+        console.log(`"${itemWishlisted.title}" wishlisted!`);
+    }
 }
 
 function addToCartItem(clickedAddToCartItemBtn) {

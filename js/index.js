@@ -1,24 +1,19 @@
 function indexOnloadFunc() {
-    // set_checkIfInCart_textcontent(homepage_allGamesTitle);
-    // set_checkIfWishlisted_textcontent(homepage_allGamesTitle);
+
 }
 
 function homepage_wishlistBtnClicked(clickedWishlistItemBtn) {
-    const wishlistedItem = clickedWishlistItemBtn.closest('.homepageItemDivIn');
+    const wishlistedItemTitle = clickedWishlistItemBtn.parentElement.previousElementSibling.textContent;
+    const wishlistedItemHeroImgSrc = clickedWishlistItemBtn.parentElement.parentElement.previousElementSibling.querySelector(".homepageItemHeroImg").src
 
     const itemWishlisted = {
-        title: wishlistedItem.querySelector(".homepageItemTitle").textContent,
-        img: wishlistedItem.querySelector(".homepageItemHeroImg").src
+        title: wishlistedItemTitle,
+        img: wishlistedItemHeroImgSrc
     };
 
     clickedWishlistItemBtn.textContent = "Wishlisted";
 
-    if (checkItemStatus(itemWishlisted.title, global_localStorageWishlistKeyPrefix)) {
-        console.log(`"${itemWishlisted.title}" is already wishlisted!`);
-    }
-    else {
-        wishlistItem(itemWishlisted);
-    }
+    wishlistItem(itemWishlisted);
 }
 
 function homepage_addToCartBtnClicked(clickedPurchaseBtn) {
