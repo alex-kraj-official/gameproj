@@ -11,7 +11,7 @@ function homepage_wishlistBtnClicked(clickedWishlistBtn) {
         img: item_imgSrc_toWishlist
     };
 
-    clickedWishlistBtn.textContent = "Wishlisted";
+    clickedWishlistBtn.textContent = wishlistedItemBtn_textContent;
 
     wishlistItem(itemData_toWishlist);
 }
@@ -28,7 +28,7 @@ function homepage_addToCartBtnClicked(clickedAddToCartBtn) {
         quantity: item_quantity_toAddToCart
     };
 
-    clickedAddToCartBtn.textContent = "In Cart";
+    clickedAddToCartBtn.textContent = AddedToCartItemBtn_textContent;
 
     addToCartItem(itemData_toAddToCart);
 }

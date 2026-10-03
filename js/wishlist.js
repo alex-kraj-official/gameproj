@@ -45,17 +45,6 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
     });
 }
 
-function removeWishlistItem(wishlistItemToRemove) {
-    const wishlistItemTitleToRemove = wishlistItemToRemove.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
-    const wishlistItemKeyToRemove = global_localStorageWishlistKeyPrefix + wishlistItemTitleToRemove;
-    if (localStorage.getItem(wishlistItemKeyToRemove)) {
-        localStorage.removeItem(wishlistItemKeyToRemove);
-
-        const wishlistItemDivToRemove = wishlistItemToRemove.parentElement.parentElement.parentElement;
-        wishlistItemDivToRemove.remove();
-    }
-}
-
 function wishlist_addToCartBtnClicked(clickedAddToCartBtn) {
     const item_title_toAddToCart = clickedAddToCartBtn.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
     const item_imgSrc_toAddToCart = clickedAddToCartBtn.parentElement.previousElementSibling.querySelector(".wishlistItemHeroImg").src;
@@ -68,7 +57,18 @@ function wishlist_addToCartBtnClicked(clickedAddToCartBtn) {
         quantity: item_quantity_toAddToCart
     };
 
-    clickedAddToCartBtn.textContent = "In Cart";
+    clickedAddToCartBtn.textContent = AddedToCartItemBtn_textContent;
 
     addToCartItem(itemData_toAddToCart);
+}
+
+function removeWishlistItem(wishlistItemToRemove) {
+    const wishlistItemTitleToRemove = wishlistItemToRemove.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
+    const wishlistItemKeyToRemove = global_localStorageWishlistKeyPrefix + wishlistItemTitleToRemove;
+    if (localStorage.getItem(wishlistItemKeyToRemove)) {
+        localStorage.removeItem(wishlistItemKeyToRemove);
+
+        const wishlistItemDivToRemove = wishlistItemToRemove.parentElement.parentElement.parentElement;
+        wishlistItemDivToRemove.remove();
+    }
 }

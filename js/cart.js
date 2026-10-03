@@ -36,7 +36,7 @@ function cartDisplayAddedItems(cartItemsAdded) {
                 </div>
             </div>
             <div class="cartItemBtnDiv">
-                <button class="cart_wishlistBtn"></button>
+                <button class="cart_wishlistBtn" onclick="cart_wishlistBtnClicked(this)"></button>
                 <button class="removeFromCartBtn" onclick="removeCartItem(this)">Remove</button>
             </div>
         `;
@@ -44,6 +44,20 @@ function cartDisplayAddedItems(cartItemsAdded) {
         cartItemDivOut.appendChild(cartItemDivIn);
         cartItemsDiv.appendChild(cartItemDivOut);
     });
+}
+
+function cart_wishlistBtnClicked(clickedWishlistBtn) {
+    const item_title_toWishlist = clickedWishlistBtn.parentElement.previousElementSibling.querySelector(".cartItemTitle").textContent;
+    const item_imgSrc_toWishlist = clickedWishlistBtn.parentElement.previousElementSibling.querySelector(".cartItemHeroImg").src;
+
+    const itemData_toWishlist = {
+        title: item_title_toWishlist,
+        img: item_imgSrc_toWishlist
+    };
+
+    clickedWishlistBtn.textContent = wishlistedItemBtn_textContent;
+
+    wishlistItem(itemData_toWishlist);
 }
 
 function removeCartItem(cartItemToRemove) {

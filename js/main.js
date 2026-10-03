@@ -20,6 +20,11 @@ function mainOnLoadFunc() {
 const global_localStorageCartKeyPrefix = "cart-";
 const global_localStorageWishlistKeyPrefix = "wishlist-";
 
+const notWishlistedItemBtn_textContent = "Wishlist";
+const wishlistedItemBtn_textContent = "Wishlisted";
+const notAddedToCartItemBtn_textContent = "Add to Cart";
+const AddedToCartItemBtn_textContent = "In Cart";
+
 function setBtntextcontent_checkIfWishlisted(allGameTitleElementsToCheck) {
     allGameTitleElementsToCheck.forEach(singleGameTitleElementToCheck => {
         let wishlistBtnToSet;
@@ -35,12 +40,12 @@ function setBtntextcontent_checkIfWishlisted(allGameTitleElementsToCheck) {
         }
         if (checkItemStatus(singleGameTitleElementToCheck.textContent, global_localStorageWishlistKeyPrefix)) {
             if (wishlistBtnToSet != undefined) {
-                wishlistBtnToSet.textContent = "Wishlisted";
+                wishlistBtnToSet.textContent = wishlistedItemBtn_textContent;
             }
         }
         else {
             if (wishlistBtnToSet != undefined) {
-                wishlistBtnToSet.textContent = "Wishlist";
+                wishlistBtnToSet.textContent = notWishlistedItemBtn_textContent;
             }
         }
     });
@@ -61,12 +66,12 @@ function setBtntextcontent_checkIfInCart(allGameTitleElementsToCheck) {
         }
         if (checkItemStatus(singleGameTitleElementToCheck.textContent, global_localStorageCartKeyPrefix)) {
             if (addToCartBtnToSet != undefined) {
-                addToCartBtnToSet.textContent = "In cart";
+                addToCartBtnToSet.textContent = AddedToCartItemBtn_textContent;
             }
         }
         else {
             if (addToCartBtnToSet != undefined) {
-                addToCartBtnToSet.textContent = "Add to cart";
+                addToCartBtnToSet.textContent = notAddedToCartItemBtn_textContent;
             }
         }
     });
