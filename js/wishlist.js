@@ -56,46 +56,19 @@ function removeWishlistItem(wishlistItemToRemove) {
     }
 }
 
+function wishlist_addToCartBtnClicked(clickedAddToCartBtn) {
+    const item_title_toAddToCart = clickedAddToCartBtn.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
+    const item_imgSrc_toAddToCart = clickedAddToCartBtn.parentElement.previousElementSibling.querySelector(".wishlistItemHeroImg").src;
 
+    const item_quantity_toAddToCart = getQuantityAddedToCartItem(item_title_toAddToCart);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function wishlist_addToCartBtnClicked(wishlistedItemAddToCart) {
-    const wishlistedItemTitleAddToCart = wishlistedItemAddToCart.parentElement.previousElementSibling.querySelector('.wishlistItemTitle').textContent;
-    const wishlistedItemKeyAddToCart = global_localStorageCartKeyPrefix + wishlistedItemTitleAddToCart;
-
-    const wishlistedItemValueAddToCart = {
-        title: wishlistedItemTitleAddToCart,
-        img: wishlistedItemAddToCart.parentElement.previousElementSibling.querySelector(".wishlistItemHeroImg").getAttribute("src"),
-        quantity: 0
+    const itemData_toAddToCart = {
+        title: item_title_toAddToCart,
+        img: item_imgSrc_toAddToCart,
+        quantity: item_quantity_toAddToCart
     };
 
-    wishlistedItemValueAddToCart.quantity = getQuantityAddedToCartItem(wishlistedItemTitleAddToCart);
+    clickedAddToCartBtn.textContent = "In Cart";
 
-    localStorage.setItem(wishlistedItemKeyAddToCart, JSON.stringify(wishlistedItemValueAddToCart));
-    wishlistedItemAddToCart.textContent = "In Cart";
-
-    console.log(`${wishlistedItemValueAddToCart.title} added to the cart!`);
-    if (checkItemStatus(wishlistedItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
-        console.log(`This item has been added to the cart already! (${wishlistedItemValueAddToCart.title})`);
-    }
-    console.log("quantity", wishlistedItemValueAddToCart.quantity);
+    addToCartItem(itemData_toAddToCart);
 }

@@ -82,47 +82,35 @@ function checkItemStatus(itemToCheck, statusToCheck) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function wishlistItem(itemWishlisted) {
-    if (checkItemStatus(itemWishlisted.title, global_localStorageWishlistKeyPrefix)) {
-        console.log(`"${itemWishlisted.title}" is already wishlisted!`);
+function wishlistItem(itemData_toWishlist) {
+    if (checkItemStatus(itemData_toWishlist.title, global_localStorageWishlistKeyPrefix)) {
+        console.log(`"${itemData_toWishlist.title}" is already wishlisted!`);
     }
     else {
-        let storageKey = global_localStorageWishlistKeyPrefix + itemWishlisted.title;
-        localStorage.setItem(storageKey, JSON.stringify(itemWishlisted));
-        console.log(`"${itemWishlisted.title}" wishlisted!`);
+        let storageKey = global_localStorageWishlistKeyPrefix + itemData_toWishlist.title;
+        localStorage.setItem(storageKey, JSON.stringify(itemData_toWishlist));
+        console.log(`"${itemData_toWishlist.title}" wishlisted!`);
     }
 }
 
-function addToCartItem(clickedAddToCartItemBtn) {
-    let storageKey = global_localStorageCartKeyPrefix + clickedAddToCartItemBtn.title;
-    localStorage.setItem(storageKey, JSON.stringify(clickedAddToCartItemBtn));
-
-    console.log(`${wishlistedItemValueAddToCart.title} added to the cart!`);
-    if (checkItemStatus(wishlistedItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
-        console.log(`This item has been added to the cart already! (${wishlistedItemValueAddToCart.title})`);
+function addToCartItem(itemData_toAddToCart) {
+    if (checkItemStatus(itemData_toAddToCart.title, global_localStorageCartKeyPrefix)) {
+        console.log(`${itemData_toAddToCart.title} is already added to the cart!`);
     }
-    console.log("quantity", wishlistedItemValueAddToCart.quantity);
+
+    let storageKey = global_localStorageCartKeyPrefix + itemData_toAddToCart.title;
+    localStorage.setItem(storageKey, JSON.stringify(itemData_toAddToCart));
+
+    console.log(`${itemData_toAddToCart.title} added to the cart!`);
+    console.log("quantity", itemData_toAddToCart.quantity);
 }
 
-function getQuantityAddedToCartItem(ItemTitleAddedToCart) {
-    const ItemQuantityToGet = global_localStorageCartKeyPrefix + ItemTitleAddedToCart;
+function getQuantityAddedToCartItem(item_title_ToAddToCart) {
+    const item_quantity_ToGet = global_localStorageCartKeyPrefix + item_title_ToAddToCart;
 
-    if (checkItemStatus(ItemTitleAddedToCart, global_localStorageCartKeyPrefix)) {
-        const ItemQuantityToAddToCartQuantity = JSON.parse(localStorage.getItem(ItemQuantityToGet)).quantity;
-        return ItemQuantityToAddToCartQuantity + 1;
+    if (checkItemStatus(item_title_ToAddToCart, global_localStorageCartKeyPrefix)) {
+        const item_quantity_ToAddToCart = JSON.parse(localStorage.getItem(item_quantity_ToGet)).quantity;
+        return item_quantity_ToAddToCart + 1;
     }
     else {
         return 1;

@@ -2,44 +2,33 @@ function indexOnloadFunc() {
 
 }
 
-function homepage_wishlistBtnClicked(clickedWishlistItemBtn) {
-    const wishlistedItemTitle = clickedWishlistItemBtn.parentElement.previousElementSibling.textContent;
-    const wishlistedItemHeroImgSrc = clickedWishlistItemBtn.parentElement.parentElement.previousElementSibling.querySelector(".homepageItemHeroImg").src
+function homepage_wishlistBtnClicked(clickedWishlistBtn) {
+    const item_title_toWishlist = clickedWishlistBtn.parentElement.previousElementSibling.textContent;
+    const item_imgSrc_toWishlist = clickedWishlistBtn.parentElement.parentElement.previousElementSibling.querySelector(".homepageItemHeroImg").src
 
-    const itemWishlisted = {
-        title: wishlistedItemTitle,
-        img: wishlistedItemHeroImgSrc
+    const itemData_toWishlist = {
+        title: item_title_toWishlist,
+        img: item_imgSrc_toWishlist
     };
 
-    clickedWishlistItemBtn.textContent = "Wishlisted";
+    clickedWishlistBtn.textContent = "Wishlisted";
 
-    wishlistItem(itemWishlisted);
+    wishlistItem(itemData_toWishlist);
 }
 
-function homepage_addToCartBtnClicked(clickedPurchaseBtn) {
-    const gamePurchased = clickedPurchaseBtn.closest('.homepageItemDivIn');
+function homepage_addToCartBtnClicked(clickedAddToCartBtn) {
+    const item_title_toAddToCart = clickedAddToCartBtn.parentElement.previousElementSibling.textContent;
+    const item_imgSrc_toAddToCart = clickedAddToCartBtn.parentElement.parentElement.previousElementSibling.querySelector(".homepageItemHeroImg").src;
 
-    const itemAdded = {
-        title: null,
-        img: null,
-        quantity: 0
+    const item_quantity_toAddToCart = getQuantityAddedToCartItem(item_title_toAddToCart);
+
+    const itemData_toAddToCart = {
+        title: item_title_toAddToCart,
+        img: item_imgSrc_toAddToCart,
+        quantity: item_quantity_toAddToCart
     };
 
-    itemAdded.img = gamePurchased.querySelector(".homepageItemHeroImg").src;
-    itemAdded.title = gamePurchased.querySelector(".homepageItemTitle").textContent;
+    clickedAddToCartBtn.textContent = "In Cart";
 
-    itemAdded.quantity = getQuantityAddedToCartItem(itemAdded.title);
-
-    clickedPurchaseBtn.textContent = "In Cart";
-
-    if (checkItemStatus(itemAdded.title, global_localStorageCartKeyPrefix)) {
-        console.log("This item has been added to the cart already!");
-    }
-    else {
-        console.log("title", itemAdded.title);
-        console.log("img", itemAdded.img);
-        console.log("quantity", itemAdded.quantity);
-    }
-
-    addToCartItem(itemAdded);
+    addToCartItem(itemData_toAddToCart);
 }
