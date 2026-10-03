@@ -8,7 +8,7 @@ function homepage_wishlistBtnClicked(clickedWishlistBtn) {
 
     const itemData_toWishlist = {
         title: item_title_toWishlist,
-        img: item_imgSrc_toWishlist
+        imgSrc: item_imgSrc_toWishlist
     };
 
     clickedWishlistBtn.textContent = wishlistedItemBtn_textContent;
@@ -24,7 +24,7 @@ function homepage_addToCartBtnClicked(clickedAddToCartBtn) {
 
     const itemData_toAddToCart = {
         title: item_title_toAddToCart,
-        img: item_imgSrc_toAddToCart,
+        imgSrc: item_imgSrc_toAddToCart,
         quantity: item_quantity_toAddToCart
     };
 

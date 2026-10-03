@@ -53,7 +53,7 @@ function wishlist_addToCartBtnClicked(clickedAddToCartBtn) {
 
     const itemData_toAddToCart = {
         title: item_title_toAddToCart,
-        img: item_imgSrc_toAddToCart,
+        imgSrc: item_imgSrc_toAddToCart,
         quantity: item_quantity_toAddToCart
     };
 

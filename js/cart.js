@@ -52,7 +52,7 @@ function cart_wishlistBtnClicked(clickedWishlistBtn) {
 
     const itemData_toWishlist = {
         title: item_title_toWishlist,
-        img: item_imgSrc_toWishlist
+        imgSrc: item_imgSrc_toWishlist
     };
 
     clickedWishlistBtn.textContent = wishlistedItemBtn_textContent;
