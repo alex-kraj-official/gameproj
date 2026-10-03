@@ -36,7 +36,7 @@ function cartDisplayAddedItems(cartItemsAdded) {
                 </div>
             </div>
             <div class="cartItemBtnDiv">
-                <button class="wishlistBtn">Wishlist</button>
+                <button class="cart_wishlistBtn"></button>
                 <button class="removeFromCartBtn" onclick="removeCartItem(this)">Remove</button>
             </div>
         `;

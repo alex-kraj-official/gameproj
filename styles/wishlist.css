@@ -97,7 +97,7 @@
     gap: 5px;
 }
 
-.addToCartBtn {
+.wishlist_addToCartBtn {
     justify-self: flex-start;
     width: 75%;
     background-color: #2a475e;
@@ -110,7 +110,7 @@
     transition: all 0.2s ease;
 }
 
-.addToCartBtn:hover {
+.wishlist_addToCartBtn:hover {
     background-color: #67c1f5;
     color: #ffffff;
 }

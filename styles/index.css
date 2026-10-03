@@ -5,7 +5,7 @@
 }
 
 /* GAME CARD STYLING */
-.singleGameOut {
+.homepageItemDivOut {
     width: 16vw;
     height: 50vh;
     border-radius: 10px;
@@ -18,7 +18,7 @@
 }
 
 /* ADD THIS NEW BLOCK for the hover effect */
-.singleGameOut:hover {
+.homepageItemDivOut:hover {
     transform: scale(1.05);
     /* Scales the card up by 5% */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
@@ -26,7 +26,7 @@
     cursor: pointer;
 }
 
-.singleGameIn {
+.homepageItemDivIn {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -39,13 +39,13 @@
     /* Slightly lighter than the body background */
 }
 
-.singleGameHeroDiv {
+.homepageItemHeroImgDiv {
     width: 100%;
     height: 75%;
     /* Adjusted slightly to give bottom text more room */
 }
 
-.singleGameHeroImg {
+.homepageItemHeroImg {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -54,7 +54,7 @@
     /* Ensures the exact center of the original image is the focal point */
 }
 
-.singleGameBelow {
+.homepageItemBelowDiv {
     width: 100%;
     height: 25%;
     display: flex;
@@ -62,7 +62,7 @@
     justify-content: space-evenly;
 }
 
-.singleGameTitle {
+.homepageItemTitle {
     margin: 5px;
     font-size: 1.1rem;
     white-space: nowrap;
@@ -70,7 +70,7 @@
     text-overflow: ellipsis;
 }
 
-.singleGameBtns {
+.homepageItemBtnDiv {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -78,7 +78,7 @@
 }
 
 /* STEAM WISHLIST BUTTON */
-.wishlistBtn {
+.homepage_wishlistBtn {
     background-color: #2a475e;
     color: #67c1f5;
     border: none;
@@ -89,13 +89,13 @@
     transition: all 0.2s ease;
 }
 
-.wishlistBtn:hover {
+.homepage_wishlistBtn:hover {
     background-color: #67c1f5;
     color: #ffffff;
 }
 
 /* STEAM ADD TO CART BUTTON */
-.purchaseBtn {
+.homepage_addToCartBtn {
     background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
     color: #d2efa9;
     border: none;
@@ -106,7 +106,7 @@
     transition: all 0.2s ease;
 }
 
-.purchaseBtn:hover {
+.homepage_addToCartBtn:hover {
     background: linear-gradient(to right, #8ed629 5%, #6aa621 95%);
     color: #ffffff;
 }

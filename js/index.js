@@ -1,16 +1,14 @@
 function indexOnloadFunc() {
-    // localStorage.clear();
-    const singleGames = [...document.getElementsByClassName('singleGameTitle')];
-    set_checkIfInCart_textcontent(singleGames);
-    set_checkIfWishlisted_textcontent(singleGames);
+    // set_checkIfInCart_textcontent(homepage_allGamesTitle);
+    // set_checkIfWishlisted_textcontent(homepage_allGamesTitle);
 }
 
 function homepage_wishlistBtnClicked(clickedWishlistItemBtn) {
-    const wishlistedItem = clickedWishlistItemBtn.closest('.singleGameIn');
+    const wishlistedItem = clickedWishlistItemBtn.closest('.homepageItemDivIn');
 
     const itemWishlisted = {
-        title: wishlistedItem.querySelector(".singleGameTitle").textContent,
-        img: wishlistedItem.querySelector(".singleGameHeroImg").src
+        title: wishlistedItem.querySelector(".homepageItemTitle").textContent,
+        img: wishlistedItem.querySelector(".homepageItemHeroImg").src
     };
 
     clickedWishlistItemBtn.textContent = "Wishlisted";
@@ -24,7 +22,7 @@ function homepage_wishlistBtnClicked(clickedWishlistItemBtn) {
 }
 
 function homepage_addToCartBtnClicked(clickedPurchaseBtn) {
-    const gamePurchased = clickedPurchaseBtn.closest('.singleGameIn');
+    const gamePurchased = clickedPurchaseBtn.closest('.homepageItemDivIn');
 
     const itemAdded = {
         title: null,
@@ -32,10 +30,10 @@ function homepage_addToCartBtnClicked(clickedPurchaseBtn) {
         quantity: 0
     };
 
-    itemAdded.img = gamePurchased.querySelector(".singleGameHeroImg").src;
-    itemAdded.title = gamePurchased.querySelector(".singleGameTitle").textContent;
+    itemAdded.img = gamePurchased.querySelector(".homepageItemHeroImg").src;
+    itemAdded.title = gamePurchased.querySelector(".homepageItemTitle").textContent;
 
-    itemAdded.quantity = getItemQuantityAddedToCart(itemAdded.title);
+    itemAdded.quantity = getQuantityAddedToCartItem(itemAdded.title);
 
     clickedPurchaseBtn.textContent = "In Cart";
 
@@ -48,5 +46,5 @@ function homepage_addToCartBtnClicked(clickedPurchaseBtn) {
         console.log("quantity", itemAdded.quantity);
     }
 
-    addItemToCart(itemAdded);
+    addToCartItem(itemAdded);
 }

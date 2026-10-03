@@ -35,7 +35,7 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
                 </div>
             </div>
             <div class="wishlistItemBtnDiv">
-                <button class="addToCartBtn" onclick="wishlist_addToCartBtnClicked(this)">Add to Cart</button>
+                <button class="wishlist_addToCartBtn" onclick="wishlist_addToCartBtnClicked(this)"></button>
                 <button class="removeFromWishlistBtn" onclick="removeWishlistItem(this)">Remove</button>
             </div>
         `;
@@ -88,17 +88,14 @@ function wishlist_addToCartBtnClicked(wishlistedItemAddToCart) {
         quantity: 0
     };
 
-    if (checkItemStatus(wishlistedItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
-        console.log("This item has been added to the cart already!");
-    }
-    else {
-        console.log("title", wishlistedItemValueAddToCart.title);
-        console.log("img", wishlistedItemValueAddToCart.img);
-        console.log("quantity", wishlistedItemValueAddToCart.quantity);
-    }
-
-    wishlistedItemValueAddToCart.quantity = getItemQuantityAddedToCart(wishlistedItemTitleAddToCart);
+    wishlistedItemValueAddToCart.quantity = getQuantityAddedToCartItem(wishlistedItemTitleAddToCart);
 
     localStorage.setItem(wishlistedItemKeyAddToCart, JSON.stringify(wishlistedItemValueAddToCart));
     wishlistedItemAddToCart.textContent = "In Cart";
+
+    console.log(`${wishlistedItemValueAddToCart.title} added to the cart!`);
+    if (checkItemStatus(wishlistedItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
+        console.log(`This item has been added to the cart already! (${wishlistedItemValueAddToCart.title})`);
+    }
+    console.log("quantity", wishlistedItemValueAddToCart.quantity);
 }

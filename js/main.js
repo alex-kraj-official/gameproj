@@ -1,33 +1,72 @@
+function mainOnLoadFunc() {
+    // localStorage.clear();
+    const homepage_allGameTitle_elements =
+        [...document.getElementsByClassName('homepageItemTitle')];
+    const wishlist_allGameTitle_elements =
+        [...document.getElementsByClassName('wishlistItemTitle')];
+    const cart_allGameTitles_elements =
+        [...document.getElementsByClassName('cartItemTitle')];
+
+    const allGameTitleElementsToCheck = [
+        ...homepage_allGameTitle_elements,
+        ...wishlist_allGameTitle_elements,
+        ...cart_allGameTitles_elements
+    ];
+
+    setBtntextcontent_checkIfWishlisted(allGameTitleElementsToCheck);
+    setBtntextcontent_checkIfInCart(allGameTitleElementsToCheck);
+}
+
 const global_localStorageCartKeyPrefix = "cart-";
 const global_localStorageWishlistKeyPrefix = "wishlist-";
 
-function set_checkIfWishlisted_textcontent(singleGames) {
-    singleGames.forEach(singleGame => {
-        const wishlistBtn = singleGame.nextElementSibling.querySelector('.wishlistBtn');
-        if (checkItemStatus(singleGame.textContent, global_localStorageWishlistKeyPrefix)) {
-            if (wishlistBtn) {
-                wishlistBtn.textContent = "Wishlisted";
+function setBtntextcontent_checkIfWishlisted(allGameTitleElementsToCheck) {
+    allGameTitleElementsToCheck.forEach(singleGameTitleElementToCheck => {
+        let wishlistBtnToSet;
+        switch (singleGameTitleElementToCheck.className) {
+            case "homepageItemTitle":
+                wishlistBtnToSet = singleGameTitleElementToCheck.nextElementSibling.querySelector('.homepage_wishlistBtn');
+                break;
+            case "cartItemTitle":
+                wishlistBtnToSet = singleGameTitleElementToCheck.parentElement.parentElement.nextElementSibling.querySelector('.cart_wishlistBtn');
+                break;
+            default:
+                break;
+        }
+        if (checkItemStatus(singleGameTitleElementToCheck.textContent, global_localStorageWishlistKeyPrefix)) {
+            if (wishlistBtnToSet != undefined) {
+                wishlistBtnToSet.textContent = "Wishlisted";
             }
         }
         else {
-            if (wishlistBtn) {
-                wishlistBtn.textContent = "Wishlist";
+            if (wishlistBtnToSet != undefined) {
+                wishlistBtnToSet.textContent = "Wishlist";
             }
         }
     });
 }
 
-function set_checkIfInCart_textcontent(singleGames) {
-    singleGames.forEach(singleGame => {
-        const purchaseBtn = singleGame.nextElementSibling.querySelector('.purchaseBtn');
-        if (checkItemStatus(singleGame.textContent, global_localStorageCartKeyPrefix)) {
-            if (purchaseBtn) {
-                purchaseBtn.textContent = "In Cart";
+function setBtntextcontent_checkIfInCart(allGameTitleElementsToCheck) {
+    allGameTitleElementsToCheck.forEach(singleGameTitleElementToCheck => {
+        let addToCartBtnToSet;
+        switch (singleGameTitleElementToCheck.className) {
+            case "homepageItemTitle":
+                addToCartBtnToSet = singleGameTitleElementToCheck.nextElementSibling.querySelector('.homepage_addToCartBtn');
+                break;
+            case "wishlistItemTitle":
+                addToCartBtnToSet = singleGameTitleElementToCheck.parentElement.parentElement.nextElementSibling.querySelector('.wishlist_addToCartBtn');
+                break;
+            default:
+                break;
+        }
+        if (checkItemStatus(singleGameTitleElementToCheck.textContent, global_localStorageCartKeyPrefix)) {
+            if (addToCartBtnToSet != undefined) {
+                addToCartBtnToSet.textContent = "In cart";
             }
         }
         else {
-            if (purchaseBtn) {
-                purchaseBtn.textContent = "Add to Cart";
+            if (addToCartBtnToSet != undefined) {
+                addToCartBtnToSet.textContent = "Add to cart";
             }
         }
     });
@@ -59,19 +98,24 @@ function checkItemStatus(itemToCheck, statusToCheck) {
 function wishlistItem(clickedWishlistItemBtn) {
     let storageKey = global_localStorageWishlistKeyPrefix + clickedWishlistItemBtn.title;
     localStorage.setItem(storageKey, JSON.stringify(clickedWishlistItemBtn));
-    console.log(`"${clickedWishlistItemBtn.title}" wishlisted!`)
+    console.log(`"${clickedWishlistItemBtn.title}" wishlisted!`);
 }
 
-function addItemToCart(itemAdded) {
-    let storageKey = global_localStorageCartKeyPrefix + itemAdded.title;
-    localStorage.setItem(storageKey, JSON.stringify(itemAdded));
-    console.log(`"${itemAdded.title}" is already added to cart!`);
+function addToCartItem(clickedAddToCartItemBtn) {
+    let storageKey = global_localStorageCartKeyPrefix + clickedAddToCartItemBtn.title;
+    localStorage.setItem(storageKey, JSON.stringify(clickedAddToCartItemBtn));
+
+    console.log(`${wishlistedItemValueAddToCart.title} added to the cart!`);
+    if (checkItemStatus(wishlistedItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
+        console.log(`This item has been added to the cart already! (${wishlistedItemValueAddToCart.title})`);
+    }
+    console.log("quantity", wishlistedItemValueAddToCart.quantity);
 }
 
-function getItemQuantityAddedToCart(ItemTitleAddToCart) {
-    const ItemQuantityToGet = global_localStorageCartKeyPrefix + ItemTitleAddToCart;
+function getQuantityAddedToCartItem(ItemTitleAddedToCart) {
+    const ItemQuantityToGet = global_localStorageCartKeyPrefix + ItemTitleAddedToCart;
 
-    if (checkItemStatus(ItemTitleAddToCart, global_localStorageCartKeyPrefix)) {
+    if (checkItemStatus(ItemTitleAddedToCart, global_localStorageCartKeyPrefix)) {
         const ItemQuantityToAddToCartQuantity = JSON.parse(localStorage.getItem(ItemQuantityToGet)).quantity;
         return ItemQuantityToAddToCartQuantity + 1;
     }
