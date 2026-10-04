@@ -19,6 +19,10 @@ function cartDisplayAddedItems(cartItemsAdded) {
     cartItemsAdded.forEach(cartItemAdded => {
         const cartItemData = JSON.parse(cartItemAdded.value);
 
+        const cartItem_title = cartItemData.title;
+        const cartItem_imgSrc = cartItemData.imgSrc;
+        const cartItem_quantity = cartItemData.quantity;
+
         const cartItemDivOut = document.createElement("div");
         cartItemDivOut.className = "cartItemDivOut";
 
@@ -28,10 +32,10 @@ function cartDisplayAddedItems(cartItemsAdded) {
 
         cartItemDivIn.innerHTML = `
             <div class="cartItemDataDiv">
-                <img class="cartItemHeroImg" src="${cartItemData.imgSrc}" alt="${cartItemData.title}-hero">
+                <img class="cartItemHeroImg" src="${cartItem_imgSrc}" alt="${cartItem_title}-hero">
                 <div class="cartItemText">
-                    <h3 class="cartItemTitle">${cartItemData.title}</h3>
-                    <h4 class="cartItemAddedQuantity">Quantity: ${cartItemData.quantity}</h4>
+                    <h3 class="cartItemTitle">${cartItem_title}</h3>
+                    <h4 class="cartItemAddedQuantity">Quantity: ${cartItem_quantity}</h4>
                 </div>
             </div>
             <div class="cartItemBtnDiv">

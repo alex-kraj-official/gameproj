@@ -19,6 +19,9 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
     wishlistItemsAdded.forEach(wishlistItemAdded => {
         const wishlistItemData = JSON.parse(wishlistItemAdded.value);
 
+        const wishlistItem_title = wishlistItemData.title;
+        const wishlistItem_imgSrc = wishlistItemData.imgSrc;
+
         const wishlistItemDivOut = document.createElement("div");
         wishlistItemDivOut.className = "wishlistItemDivOut";
 
@@ -28,9 +31,9 @@ function wishlistDisplayAddedItems(wishlistItemsAdded) {
 
         wishlistItemDivIn.innerHTML = `
             <div class="wishlistItemDataDiv">
-                <img class="wishlistItemHeroImg" src="${wishlistItemData.imgSrc}" alt="${wishlistItemData.title}-hero">
+                <img class="wishlistItemHeroImg" src="${wishlistItem_imgSrc}" alt="${wishlistItem_title}-hero">
                 <div class="wishlistItemText">
-                    <h3 class="wishlistItemTitle">${wishlistItemData.title}</h3>
+                    <h3 class="wishlistItemTitle">${wishlistItem_title}</h3>
                 </div>
             </div>
             <div class="wishlistItemBtnDiv">

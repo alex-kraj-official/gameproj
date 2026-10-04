@@ -1,5 +1,57 @@
 function indexOnloadFunc() {
+    const homepageItems = homepageGetItems();
+    homepageDisplayItems(homepageItems);
+}
 
+function homepageGetItems() {
+    const homepageItems = [
+        {
+            title: "Cyberpunk 2077",
+            imgSrc: "../img/Cyberpunk_2077.jpg"
+        },
+        {
+            title: "Viewfinder",
+            imgSrc: "../img/Viewfinder.jpg"
+        },
+        {
+            title: "Heroes III",
+            imgSrc: "../img/Heroes of Might and Magic III.jpg"
+        }
+    ];
+
+    return homepageItems;
+}
+
+function homepageDisplayItems(homepageItems) {
+    const homepageItemsDiv = document.getElementById("mostPopularGames");
+
+    homepageItems.forEach(homepageItem => {
+        const homepageItem_title = homepageItem.title;
+        const homepageItem_imgSrc = homepageItem.imgSrc;
+
+        const homepageItemDivOut = document.createElement("div");
+        homepageItemDivOut.className = "homepageItemDivOut";
+
+        const homepageItemDivIn = document.createElement("div");
+        homepageItemDivIn.className = "homepageItemDivIn";
+        homepageItemDivIn.id = homepageItem.key;
+
+        homepageItemDivIn.innerHTML = `
+            <div class="homepageItemHeroImgDiv">
+                <img class="homepageItemHeroImg" src="${homepageItem_imgSrc}" alt="${homepageItem_title}-hero">
+            </div>
+            <div class="homepageItemBelowDiv">
+                <h3 class="homepageItemTitle">${homepageItem_title}</h3>
+                <div class="homepageItemBtnDiv">
+                    <button class="homepage_wishlistBtn" onclick="homepage_wishlistBtnClicked(this)"></button>
+                    <button class="homepage_addToCartBtn" onclick="homepage_addToCartBtnClicked(this)"></button>
+                </div>
+            </div>
+        `;
+
+        homepageItemDivOut.appendChild(homepageItemDivIn);
+        homepageItemsDiv.appendChild(homepageItemDivOut);
+    });
 }
 
 function homepage_wishlistBtnClicked(clickedWishlistBtn) {
