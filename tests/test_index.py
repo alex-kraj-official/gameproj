@@ -1,3 +1,4 @@
+import re
 from playwright.sync_api import expect
 
 # page, index_url: pytest automatically gets them:
@@ -78,3 +79,18 @@ def test_homepage_addToCartBtns_click_changes_textContents(page, index_url):
         addToCartBtns.nth(i).click()
 
     expect(addToCartBtns).to_have_text(["In Cart"] * count)
+
+def test_homepage_all_items_have_img(page, index_url):
+    page.goto(index_url)
+
+    imgs = page.locator(".homepageItemHeroImg")
+    count = imgs.count()
+    
+    assert count > 0, "No matching image elements found on the page."
+
+    for i in range(count):
+        # re.compile(r".+"):
+        # Ensures the src attribute exists and
+        # contains at least one character
+        # (meaning it isn't blank or completely empty).
+        expect(imgs.nth(i)).to_have_attribute("src", re.compile(r".+"))
