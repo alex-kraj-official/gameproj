@@ -19,6 +19,14 @@ def test_homepage_all_3_videogames_appearing_on_homepage(page, index_url):
 
     expect(games).to_have_count(3)
 
+def test_homepage_all_videogames_title_are_not_empty(page, index_url):
+    page.goto(index_url)
+
+    gameTitles = page.locator(".homepageItemTitle")
+
+    for title in gameTitles.all():
+        # This asserts the element has text content and is not an empty string ""
+        expect(title).not_to_be_empty()
 
 def test_homepage_wishlistBtns_textContent_default(page, index_url):
     page.goto(index_url)
@@ -80,7 +88,7 @@ def test_homepage_addToCartBtns_click_changes_textContents(page, index_url):
 
     expect(addToCartBtns).to_have_text(["In Cart"] * count)
 
-def test_homepage_all_items_have_img(page, index_url):
+def test_homepage_all_items_have_img_and_imgSrc(page, index_url):
     page.goto(index_url)
 
     imgs = page.locator(".homepageItemHeroImg")
