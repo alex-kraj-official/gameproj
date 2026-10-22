@@ -1,6 +1,7 @@
 import re
 from playwright.sync_api import expect
 
+
 # page, index_url: pytest automatically gets them:
 # page: an opened browser tab, ready to use
 # index_url: comes from conftest.py: the "file:///...index.html"
@@ -19,6 +20,7 @@ def test_homepage_all_3_videogames_appearing_on_homepage(page, index_url):
 
     expect(games).to_have_count(3)
 
+
 def test_homepage_all_videogames_title_are_not_empty(page, index_url):
     page.goto(index_url)
 
@@ -27,6 +29,7 @@ def test_homepage_all_videogames_title_are_not_empty(page, index_url):
     for title in gameTitles.all():
         # This asserts the element has text content and is not an empty string ""
         expect(title).not_to_be_empty()
+
 
 def test_homepage_wishlistBtns_textContent_default(page, index_url):
     page.goto(index_url)
@@ -68,6 +71,7 @@ def test_homepage_all_wishlistBtns_click_changes_textContents(page, index_url):
 
     expect(wishlistBtns).to_have_text(["On Wishlist"] * count)
 
+
 def test_homepage_first_addToCartBtn_click_changes_textContent(page, index_url):
     page.goto(index_url)
 
@@ -76,6 +80,7 @@ def test_homepage_first_addToCartBtn_click_changes_textContent(page, index_url):
     addToCartBtn.click()
 
     expect(addToCartBtn).to_have_text("In Cart")
+
 
 def test_homepage_addToCartBtns_click_changes_textContents(page, index_url):
     page.goto(index_url)
@@ -88,17 +93,18 @@ def test_homepage_addToCartBtns_click_changes_textContents(page, index_url):
 
     expect(addToCartBtns).to_have_text(["In Cart"] * count)
 
+
 def test_homepage_all_items_have_img_and_imgSrc(page, index_url):
     page.goto(index_url)
 
     imgs = page.locator(".homepageItemHeroImg")
     count = imgs.count()
-    
+
     assert count > 0, "No matching image elements found on the page."
 
     for i in range(count):
         # re.compile(r".+"):
         # Ensures the src attribute exists and
         # contains at least one character
-        # (meaning it isn't blank or completely empty).
+        # (meaning it isn't blank or completely empty)
         expect(imgs.nth(i)).to_have_attribute("src", re.compile(r".+"))
