@@ -12,16 +12,14 @@ def test_homepage_site_loadable(page, index_url):
     # expect waits and retries for deafult 5 sec. to complete the condition (auto-waiting)
     expect(page).to_have_title("G33X")
 
-
-def test_homepage_all_3_videogames_appearing_on_homepage(page, index_url):
+def test_homepage_all_videogameTitle_appeares_on_homepage(page, index_url):
     page.goto(index_url)
 
     games = page.locator(".homepageItemTitle")
 
     expect(games).to_have_count(3)
 
-
-def test_homepage_all_videogames_title_are_not_empty(page, index_url):
+def test_homepage_all_videogameTitle_textcontent_is_not_empty_onload(page, index_url):
     page.goto(index_url)
 
     gameTitles = page.locator(".homepageItemTitle")
@@ -30,8 +28,7 @@ def test_homepage_all_videogames_title_are_not_empty(page, index_url):
         # This asserts the element has text content and is not an empty string ""
         expect(title).not_to_be_empty()
 
-
-def test_homepage_wishlistBtns_textContent_default(page, index_url):
+def test_homepage_all_wishlistBtns_textContent_Correctdefault(page, index_url):
     page.goto(index_url)
 
     wishlistBtns = page.locator(".homepage_wishlistBtn")
@@ -39,8 +36,7 @@ def test_homepage_wishlistBtns_textContent_default(page, index_url):
 
     expect(wishlistBtns).to_have_text(["Wishlist"] * count)
 
-
-def test_homepage_addToCartBtns_textContent_default(page, index_url):
+def test_homepage_all_addToCartBtns_textContent_Correctdefault(page, index_url):
     page.goto(index_url)
 
     addToCartBtns = page.locator(".homepage_addToCartBtn")
@@ -48,18 +44,7 @@ def test_homepage_addToCartBtns_textContent_default(page, index_url):
 
     expect(addToCartBtns).to_have_text(["Add to Cart"] * count)
 
-
-def test_homepage_first_wishlistBtn_click_changes_textContent(page, index_url):
-    page.goto(index_url)
-
-    first_btn = page.locator(".homepage_wishlistBtn").first
-
-    first_btn.click()
-
-    expect(first_btn).to_have_text("On Wishlist")
-
-
-def test_homepage_all_wishlistBtns_click_changes_textContents(page, index_url):
+def test_homepage_all_wishlistBtns_onclick_changes_textContent(page, index_url):
     page.goto(index_url)
 
     wishlistBtns = page.locator(".homepage_wishlistBtn")
@@ -71,18 +56,7 @@ def test_homepage_all_wishlistBtns_click_changes_textContents(page, index_url):
 
     expect(wishlistBtns).to_have_text(["On Wishlist"] * count)
 
-
-def test_homepage_first_addToCartBtn_click_changes_textContent(page, index_url):
-    page.goto(index_url)
-
-    addToCartBtn = page.locator(".homepage_addToCartBtn").first
-
-    addToCartBtn.click()
-
-    expect(addToCartBtn).to_have_text("In Cart")
-
-
-def test_homepage_addToCartBtns_click_changes_textContents(page, index_url):
+def test_homepage_all_addToCartBtns_onclick_changes_textContent(page, index_url):
     page.goto(index_url)
 
     addToCartBtns = page.locator(".homepage_addToCartBtn")
@@ -92,7 +66,6 @@ def test_homepage_addToCartBtns_click_changes_textContents(page, index_url):
         addToCartBtns.nth(i).click()
 
     expect(addToCartBtns).to_have_text(["In Cart"] * count)
-
 
 def test_homepage_all_items_have_img_and_imgSrc(page, index_url):
     page.goto(index_url)
