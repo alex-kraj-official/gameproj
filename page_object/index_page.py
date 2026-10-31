@@ -9,6 +9,7 @@ class IndexPage:
         # Playwright looks for them when they are used, not here.
         self.game_titles = page.locator(".homepageItemTitle")
         self.game_imgs = page.locator(".homepageItemHeroImg")
+        self.addToCartBtns = page.locator(".homepage_addToCartBtn")
 
     def open(self):
         self.page.goto(self.index_url)
