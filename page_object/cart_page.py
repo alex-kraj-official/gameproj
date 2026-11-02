@@ -3,9 +3,11 @@ class CartPage:
         self.page = page
         self.cart_url = cart_url
 
-        self.cart_item_titles = page.locator(".cartItemTitle")
-        self.cart_item_imgs = page.locator(".cartItemHeroImg")
-        self.cart_item_quantity_added = page.locator(".cartItemAddedQuantity")
+        self.cartItem_titles = page.locator(".cartItemTitle")
+        self.cartItem_imgs = page.locator(".cartItemHeroImg")
+        self.cartItem_quantities_added = page.locator(".cartItemAddedQuantity")
+        self.cartItem_wishlistBtns = page.locator(".cart_wishlistBtn")
+        self.cartItem_removeFromCartBtns = page.locator(".removeFromCartBtn")
 
     def open(self):
         self.page.goto(self.cart_url)
